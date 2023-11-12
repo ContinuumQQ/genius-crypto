@@ -1,4 +1,4 @@
-# genius-crypt
+# genius-crypto
 
 
 ## Описание
