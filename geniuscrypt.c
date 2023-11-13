@@ -97,7 +97,6 @@ struct arguments argumentsParse(int argc, char ** argv)
         memset(&args, 0, sizeof(args));
 
         
-
                 for (i = 1; i < argc; i++){
                         
                         if(strcmp("-p", argv[i]) == 0)
@@ -106,10 +105,10 @@ struct arguments argumentsParse(int argc, char ** argv)
                         if(strcmp("-e", argv[i]) == 0 || strcmp("-d", argv[i]) == 0)
                                 strcpy(args.chose, argv[i]);
 
-                        if(strcmp("-s", argv[i]) == 0)
+                        if(strcmp("-s", argv[i]) == 0 && argv[i + 1] != NULL)
                                 args.cryptShift = atoi(argv[i + 1]);
                         
-                        if(strcmp("-b", argv[i]) == 0)
+                        if(strcmp("-b", argv[i]) == 0 && argv[i + 1] != NULL)
                                 args.blockSize = atoi(argv[i + 1]);
 
                         if(strcmp("-h", argv[i]) == 0)
@@ -129,7 +128,7 @@ short argumentsValidation(struct arguments *arguments){
                 arguments -> blockSize = DEFAULT_BLOCK_SIZE;
         }
 
-        if (arguments -> cryptShift < 1 && arguments -> cryptShift > 127){
+        if (arguments -> cryptShift < 1){
                 printf("[shift] cannot be equal 0 or above 127\n");
                 return 0;
         }
