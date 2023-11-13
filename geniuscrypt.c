@@ -180,11 +180,11 @@ void start(struct arguments arguments)
                 
                 if (strcmp("-e", arguments.chose) == 0){
                         fileWriteCrypt(fileCrypt, arguments.cryptShift, arguments.blockSize);
-                        printf("file is crypted!");
+                        printf("file is crypted!\n");
                 }
                 else if (strcmp("-d", arguments.chose) == 0){
                         fileWriteCrypt(fileCrypt, -(arguments.cryptShift), arguments.blockSize);
-                        printf("file is decrypted!");
+                        printf("file is decrypted!\n");
                 }
                 fclose(fileCrypt);
         }
