@@ -2,3 +2,4 @@
 /*.h
 /Makefile
 /README.md
+!/*
