@@ -1,5 +1,5 @@
-/*.c
-/*.h
-/Makefile
-/README.md
-!/*
+*
+!*.c
+!*.h
+!Makefile
+!README.md
