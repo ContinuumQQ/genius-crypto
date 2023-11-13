@@ -24,7 +24,5 @@ char * readBlock(FILE *file, int bsize);
 FILE * openFile(char filename[]);
 
 long getFileSize(FILE *file);
-void fileEncrypt(FILE *file, short shift, int bsize);
-void fileDecrypt(FILE *file, short shift, int bsize);
 
 #endif

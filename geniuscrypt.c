@@ -89,22 +89,6 @@ void changeBlock(char * block, short shift, int bsize)
 }
 
 
-void fileEncrypt(FILE *file, short shift, int bsize)
-{
-        fileWriteCrypt(file, shift, bsize);
-        fflush(file);
-        printf("file is crypted\n");
-}
-
-
-void fileDecrypt(FILE *file, short shift, int bsize)
-{
-        fileWriteCrypt(file, (-1) * shift, bsize);
-        fflush(file);
-        printf("file is decrypted\n");
-}
-
-
 struct arguments argumentsParse(int argc, char ** argv)
 {
         int i = 0;
@@ -194,12 +178,14 @@ void start(struct arguments arguments)
         if (valid == 1){
                 FILE *fileCrypt = openFile(arguments.filePath);
                 
-                if (strcmp("-e", arguments.chose) == 0)
-                        fileEncrypt(fileCrypt, arguments.cryptShift, arguments.blockSize);
-
-                else if (strcmp("-d", arguments.chose) == 0)
-                        fileDecrypt(fileCrypt, arguments.cryptShift, arguments.blockSize);
-
+                if (strcmp("-e", arguments.chose) == 0){
+                        fileWriteCrypt(fileCrypt, arguments.cryptShift, arguments.blockSize);
+                        printf("file is crypted!");
+                }
+                else if (strcmp("-d", arguments.chose) == 0){
+                        fileWriteCrypt(fileCrypt, -(arguments.cryptShift), arguments.blockSize);
+                        printf("file is decrypted!");
+                }
                 fclose(fileCrypt);
         }
 }
