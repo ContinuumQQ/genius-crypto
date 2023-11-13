@@ -63,12 +63,12 @@ void fileWriteCrypt(FILE *file, short shift, int bsize)
                 block = readBlock(file, bsize);
 
                 if (fsize - curPos > bsize){
-                        changeBlock(block, shift);
+                        changeBlock(block, shift, bsize);
                         fseek(file, -bsize, SEEK_CUR);
                         fwrite(block, bsize, 1, file);
                 } 
                 else{
-                        changeBlock(block, shift);
+                        changeBlock(block, shift, fsize - curPos);
                         fseek(file, -1 * (fsize - curPos), SEEK_CUR);
                         fwrite(block, fsize - curPos, 1, file);
                         break;
@@ -79,11 +79,11 @@ void fileWriteCrypt(FILE *file, short shift, int bsize)
 }
 
 
-void changeBlock(char * block, short shift)
+void changeBlock(char * block, short shift, int bsize)
 {
-        size_t i = 0;
+        int i = 0;
 
-        for (i = 0; i < strlen(block); i++){
+        for (i = 0; i < bsize; i++){
                 block[i] += shift;
         }
 }
@@ -99,7 +99,7 @@ void fileEncrypt(FILE *file, short shift, int bsize)
 
 void fileDecrypt(FILE *file, short shift, int bsize)
 {
-        fileWriteCrypt(file, -shift, bsize);
+        fileWriteCrypt(file, (-1) * shift, bsize);
         fflush(file);
         printf("file is decrypted\n");
 }

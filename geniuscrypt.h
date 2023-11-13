@@ -19,7 +19,7 @@ struct arguments argumentsParse(int argc, char ** argv);
 short argumentsValidation(struct arguments *arguments);
 
 void fileWriteCrypt(FILE *file, short shift, int bsize);
-void changeBlock(char * block, short shift);
+void changeBlock(char * block, short shift, int bsize);
 char * readBlock(FILE *file, int bsize);
 FILE * openFile(char filename[]);
 
